@@ -140,7 +140,26 @@ function shiftByLetter(letter, letterShift) {
  * @returns {string} The message, shifted appropriately
  */
 function vigenereCipher(message, key) {
-    // Write your code here
+    let keyIndex = 0;
+
+    for (let i = 0; i < message.length; i++) {
+        let char = message[i];
+
+        if (char === ' ') {
+            result += ' ';
+            continue;
+        }
+
+        let messageCharCode = char.charCodeAt(0) - 65; 
+        let keyCharCode = key[keyIndex % key.length].charCodeAt(0) - 65; 
+
+        let shiftedCharCode = (messageCharCode + keyCharCode) % 26 + 65; 
+        result += String.fromCharCode(shiftedCharCode);
+
+        keyIndex++;
+    }
+
+    return result;code here
 }
 
 /**
